@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  math_wiz_back:
+    image: sireth/math_wiz_back:latest
+    container_name: math_wiz_back
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/math_wiz_back/
+    ports:
+      - "8000:8000"
+    command: /math_wiz_back/run.sh
+    depends_on:
+      - math_wiz_db
+
+  math_wiz_db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: math_wiz_db
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+
+volumes:
+  pgdbdata: null
