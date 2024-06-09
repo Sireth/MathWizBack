@@ -15,3 +15,5 @@ COPY requirements.txt /math_wiz_back/requirements.txt
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . /math_wiz_back/
+
+RUN python3 /math_wiz_back/math_wiz/manage.py collectstatic --noinput
