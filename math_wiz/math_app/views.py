@@ -15,9 +15,7 @@ class EvaluationApi(APIView):
             data = json.dumps(serializer.validated_data)
 
             try:
-                current_directory = os.getcwd()
-                absolute_path = os.path.join(os.path.join(os.path.join(current_directory, 'math_wiz'), 'math_app'),
-                                             'math_wiz_app')
+                absolute_path = '/math_wiz_app/math_wiz_app'
                 process = subprocess.Popen([absolute_path, '-j', str(data)],
                                            stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE,
